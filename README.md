@@ -48,10 +48,11 @@ O sistema é composto por três partes principais:
 1. **Captura do Sinal (Arduino Mega 2560)**:
    - Conecte o Arduino Mega ao seu computador.
    - Carregue o código que captura o sinal do controle remoto.
+   - Aperte o controle original do portão apontando para o Arduino.
    - O Arduino irá armazenar o código RF, protocolo e tamanho do pulso.
    
 2. **Configuração do ESP-32**:
-   - Carregue o código para o ESP-32, incluindo as credenciais da sua rede Wi-Fi e o sinal RF capturado.
+   - Carregue o código para o ESP-32, incluindo as credenciais da sua rede Wi-Fi, o sinal RF capturado, o pulso e o protocolo capturado pelo Arduino.
    - Configure a conexão com o broker MQTT, para que o ESP-32 possa receber comandos remotos.
    
 3. **Configuração do MQTT**:
@@ -61,17 +62,10 @@ O sistema é composto por três partes principais:
 4. **Testes**:
    - Com tudo configurado, teste o sistema acionando o portão via aplicativo MQTT.
 
-### Exemplo de Código
-
-- **Captura de Sinal**: Utilize o Arduino Mega para capturar o sinal do controle remoto. O código irá gerar um valor para o controle do portão (código binário, hexadecimal e decimal).
-  
-- **Configuração do ESP-32**:
-  - Modifique o código do ESP-32 para incluir as configurações da rede Wi-Fi e do sinal do controle remoto.
-  - No código, substitua as variáveis necessárias com os valores capturados.
-
 ### Observação Importante
 
 - **Broker MQTT**: Para testes, foi utilizado um broker público. Para um sistema real, é altamente recomendada a configuração de um broker privado para maior segurança.
+- **Margem de Erro no Pulso**: Considere uma margem de erro de 4 pontos percentuais para cima no pulso emitido pelo ESP-32. (Se o Arduino capturar 493 de pulso, insira no código do ESP 497 no valor)
 
 ## Conclusão
 
